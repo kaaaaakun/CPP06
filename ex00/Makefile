@@ -6,7 +6,7 @@
 #    By: tokazaki <tokazaki@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/07 16:08:51 by tokazaki          #+#    #+#              #
-#    Updated: 2024/02/02 19:12:08 by tokazaki         ###   ########.fr        #
+#    Updated: 2024/02/12 11:56:03 by tokazaki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ DEPENDS	= $(OBJS:.o=.d)
 
 # -- compile flags --
 CXX      = c++
-CXXFLAGS = -g -Wall -Wextra -Werror -std=c++98 -MMD -MP
+CXXFLAGS = -g -std=c++98 -MMD -MP
 
 # -- debug flags --
 NAME_DEBUG  = $(NAME)_debug
