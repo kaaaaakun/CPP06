@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+#include <cstdlib> // For atoi
+#include <stdexcept> // For exception handling
+
+int main(int argc, char **argv) {
+    if (argc < 2) {
+        std::cerr << "Usage: " << argv[0] << " <input_string>" << std::endl;
+        return 1;
+    }
+
+    std::string str = argv[1];
+    
+    try {
+        // Convert the input string to float and double
+        float floatValue = std::stof(str);
+        double doubleValue = std::stod(str);
+        
+        // Output the converted values
+        std::cout << "stof: " << floatValue << std::endl;
+        std::cout << "stod: " << doubleValue << std::endl;
+        
+        // Convert the input string to int using atoi
+        int intValue = std::atoi(argv[1]);
+        std::cout << "atoi: " << intValue << std::endl;
+        
+        std::cout << "str : " << str << std::endl;
+    } catch (const std::invalid_argument& e) {
+        std::cerr << "Invalid argument: " << e.what() << std::endl;
+        return 1;
+    } catch (const std::out_of_range& e) {
+        std::cerr << "Out of range error: " << e.what() << std::endl;
+        return 1;
+    }
+
+    return 0;
+}
+
