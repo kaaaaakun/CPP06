@@ -1,0 +1,71 @@
+#include <cstring>
+#include <iomanip>
+#include <iostream>
+#include <limits>
+#include <string>
+
+char stoc(int i) {
+  if (i < 32 || 126 < i) {
+    throw std::string("Non displayable");
+  }
+  return static_cast<char>(i);
+}
+
+int main(int argc, char **argv) {
+	std::cout << "main" << std::endl;
+  std::string str(static_cast<std::string>(argv[1]));
+
+  if (argc != 2) {
+	std::cout << "argc != 2" << std::endl;
+    std::cout << "Usage: ./convert [string]" << std::endl;
+    return 1;
+  }
+
+  // char一文字の時の処理
+  if (isdigit(str[0]) != 1 && str.length() == 1) {
+	std::cout << "one chara" << std::endl;
+    std::cout << "char  : " << str[0] << std::endl;
+    std::cout << "int   : " << static_cast<int>(str[0]) << std::endl;
+    std::cout << "float : " << static_cast<float>(str[0]) << "f" << std::endl;
+    std::cout << "double: " << static_cast<double>(str[0]) << std::endl;
+    return 0;
+  }
+
+  // nan inf -infの時以外の処理
+  if (isdigit(str[0] != 1) && ( \
+	std::stod(str) != std::stod("-inf") && \
+    std::stod(str) != std::stod("inf") && \
+    std::stod(str) != std::stod("nan"))) {
+    std::cout << "nan / inf / -inf" << std::endl;
+    return 0;
+  }
+
+  //数字だけの処理
+
+  try {
+    std::cout << "stof: " << std::fixed << std::setprecision(2)
+              << std::stof(str) << "f" << std::endl;
+  } catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
+  try {
+    std::cout << "stod: " << std::fixed << std::setprecision(2)
+              << std::stod(str) << std::endl;
+  } catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
+  try {
+    std::cout << "stoi: " << std::stoi(str) << std::endl;
+  } catch (std::exception &e) {
+    std::cout << e.what() << "error" << std::endl;
+  }
+  try {
+    std::cout << "char: " << stoc(std::stoi(str)) << std::endl;
+  } catch (std::string &e) {
+    std::cout << e << std::endl;
+  } catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
+  (void)argc;
+  return 0;
+}

@@ -1,0 +1,20 @@
+#include <iostream>
+
+int main() {
+	std::string inf = "inf";
+	std::string nan = "nan";
+	std::string word = "word";
+
+	std::cout << "inf: " << inf << " " << std::stof(inf) << std::endl;
+	try {
+		std::cout << "nan: " << nan << " " << std::stof(nan) << std::endl;
+	} catch (std::invalid_argument& e) {
+		std::cout << "word: " << word << " " << e.what() << std::endl;
+	}
+	try {
+		std::cout << "word: " << word << " " << std::stof(word) << std::endl;
+	} catch (std::invalid_argument& e) {
+		std::cout << "word: " << word << " " << e.what() << std::endl;
+	}
+  return 0;
+}
