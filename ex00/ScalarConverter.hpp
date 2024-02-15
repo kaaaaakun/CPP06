@@ -8,6 +8,8 @@
 
 class ScalarConverter {
  private:
+  ScalarConverter();
+
   static bool isOnlyChar(std::string& testStr);
   static bool isValidnumber(std::string& testStr);
   static bool isConvertible(std::string& testStr);

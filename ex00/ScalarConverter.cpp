@@ -1,5 +1,7 @@
 #include "ScalarConverter.hpp"
 
+ScalarConverter::ScalarConverter(){};
+
 char ScalarConverter::toChar(const std::string& str) {
   // 1文字&数字以外の処理
   int i = std::stoi(str);

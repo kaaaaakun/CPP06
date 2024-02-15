@@ -2,6 +2,8 @@
 
 #include <sys/types.h>
 
+Serializer::Serializer() {}
+
 uintptr_t Serializer::serialize(Data* ptr) {
   return reinterpret_cast<uintptr_t>(ptr);
 }

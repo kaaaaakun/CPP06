@@ -1,25 +1,22 @@
 #include <iostream>
 #include <sstream>
 
-#include "Serializer.hpp"
+#include "Base.hpp"
 
-int main(void) {
-  Data data;
-  data.data_string = "Hello world!";
-  std::cout << "Data             : " << &data << " : " << data.data_string
-            << std::endl;
+void genABC() {
+  std::cout << "\n---- gen ABC ---" << std::endl;
+  Base* base = Base::generate();
+  std::cout << "ptr : ";
+  base->identify(*base);
+  std::cout << "ref : ";
+  base->identify(base);
+  delete base;
+}
 
-  uintptr_t serialized = Serializer::serialize(&data);
-
-  std::stringstream ss;
-  ss << std::hex << serialized;  // 16進数に変換
-  std::string hexadecimalNumber = ss.str();
-  std::cout << "serialized       :   " << hexadecimalNumber << " / "
-            << serialized << std::endl;
-
-  Data *deserialized = Serializer::deserialize(serialized);
-  std::cout << "Deserialized     : " << &deserialized << " : "
-            << deserialized->data_string << std::endl;
-
-  return (0);
+int main() {
+  genABC();
+  genABC();
+  genABC();
+  genABC();
+  return 0;
 }
