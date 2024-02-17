@@ -7,8 +7,13 @@ class Base;
 
 class A : public Base {
  public:
-  A();
-  ~A();
+  A(){};
+  A(const A &other) { (void)other; };
+  ~A(){};
+  A &operator=(const A &other) {
+    (void)other;
+    return *this;
+  };
 };
 
 #endif

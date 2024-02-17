@@ -1,7 +1,5 @@
 #include "ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter(){};
-
 char ScalarConverter::toChar(const std::string& str) {
   // 1文字&数字以外の処理
   int i = std::stoi(str);
@@ -81,7 +79,6 @@ void ScalarConverter::print_error() {
 }
 
 void ScalarConverter::convert(std::string testStr) {
-  std::cout << "\ntestStr: " << testStr << std::endl;
   // 文字列だった時のエラー処理
   if (isConvertible(testStr) == false) {
     print_error();

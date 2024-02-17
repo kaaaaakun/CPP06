@@ -14,9 +14,6 @@ void genABC() {
 }
 
 int main() {
-  genABC();
-  genABC();
-  genABC();
-  genABC();
+  for (;;) genABC();
   return 0;
 }
