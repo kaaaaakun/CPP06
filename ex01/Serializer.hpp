@@ -4,9 +4,9 @@
 #include <iostream>
 #include <string>
 
-struct Data {
+typedef struct {
   std::string data_string;
-};
+} Data;
 
 class Serializer {
  private:
