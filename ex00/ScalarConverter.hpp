@@ -8,13 +8,10 @@
 
 class ScalarConverter {
  private:
-  ScalarConverter(){};
-  ~ScalarConverter(){};
-  ScalarConverter(ScalarConverter& other) { (void)other; };
-  ScalarConverter& operator=(ScalarConverter& other) {
-    (void)other;
-    return *this;
-  };
+  ScalarConverter();
+  ~ScalarConverter();
+  ScalarConverter(const ScalarConverter& other);
+  ScalarConverter& operator=(const ScalarConverter& other);
 
   static bool isOnlyChar(std::string& testStr);
   static bool isValidnumber(std::string& testStr);

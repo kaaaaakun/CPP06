@@ -6,7 +6,7 @@
 #    By: tokazaki <tokazaki@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/07 16:08:51 by tokazaki          #+#    #+#              #
-#    Updated: 2024/02/14 14:36:19 by tokazaki         ###   ########.fr        #
+#    Updated: 2024/02/18 11:14:18 by tokazaki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,10 +69,13 @@ $(OBJDIR)/%.o.debug: $(SRCDIR)/%.cpp
 	$(CXX) $(CXXFLAGS) $(DEBUG_FLAGS) -o $@ -c $<
 
 # Other targets +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
-.PHONY: format
+.PHONY: format run
 
 format:
 	clang-format --style=Google -i $(SRCS) $(HEADERS)
+
+run: $(NAME)
+	while [ 1 ];do ./$(NAME);sleep 1;done
 
 -include $(DEPENDS)
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#

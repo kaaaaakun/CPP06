@@ -1,5 +1,14 @@
 #include "ScalarConverter.hpp"
 
+// Canonical Form
+ScalarConverter::ScalarConverter() {}
+ScalarConverter::ScalarConverter(const ScalarConverter& other) { (void)other; }
+ScalarConverter::~ScalarConverter() {}
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other) {
+  (void)other;
+  return *this;
+}
+
 char ScalarConverter::toChar(const std::string& str) {
   // 1文字&数字以外の処理
   int i = std::stoi(str);

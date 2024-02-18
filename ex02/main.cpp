@@ -4,7 +4,7 @@
 #include "Base.hpp"
 
 void genABC() {
-  std::cout << "\n---- gen ABC ---" << std::endl;
+  std::cout << "---- gen ABC ---" << std::endl;
   Base* base = Base::generate();
   std::cout << "ptr : ";
   base->identify(*base);
@@ -14,6 +14,6 @@ void genABC() {
 }
 
 int main() {
-  for (;;) genABC();
+  genABC();
   return 0;
 }

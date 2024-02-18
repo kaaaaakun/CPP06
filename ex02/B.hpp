@@ -7,13 +7,10 @@ class Base;
 
 class B : public Base {
  public:
-  B(){};
-  B(const B &other) { (void)other; };
-  ~B(){};
-  B &operator=(const B &other) {
-    (void)other;
-    return *this;
-  };
+  B();
+  B(const B &other);
+  ~B();
+  B &operator=(const B &other);
 };
 
 #endif

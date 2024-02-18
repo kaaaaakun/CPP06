@@ -10,15 +10,17 @@ int main(void) {
             << std::endl;
 
   uintptr_t serialized = Serializer::serialize(&data);
+  std::cout << "--- serialized ---" << std::endl;
 
   std::stringstream ss;
-  ss << std::hex << serialized;  // 16進数に変換
+  ss << std::hex << serialized;
   std::string hexadecimalNumber = ss.str();
-  std::cout << "serialized       :   " << hexadecimalNumber << " / "
-            << serialized << std::endl;
+  std::cout << "serialized(dec)  : " << serialized << std::endl;
+  std::cout << "serialized(hex)  :   " << hexadecimalNumber << std::endl;
 
   Data *deserialized = Serializer::deserialize(serialized);
-  std::cout << "Deserialized     : " << &deserialized << " : "
+  std::cout << "--- deserialized ---" << std::endl;
+  std::cout << "Deserialized     : " << deserialized << " : "
             << deserialized->data_string << std::endl;
 
   return (0);
