@@ -88,19 +88,17 @@ void ScalarConverter::convert(std::string string) {
     }
   }
   try {
-    if (isdot == false) {
+    if (isdot == false)
       printAllType(std::stoi(string));
-    } else {
+    else
       printAllType(std::stod(string));
-    }
+    return;
   } catch (const std::exception& e) {
     try {
       hugeNumPrint(std::stod(string));
-      return;
     } catch (const std::exception& e) {
       printError();
-      return;
     }
+    return;
   }
-  return;
 }
