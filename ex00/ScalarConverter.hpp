@@ -13,10 +13,16 @@ class ScalarConverter {
   ScalarConverter(const ScalarConverter& other);
   ScalarConverter& operator=(const ScalarConverter& other);
 
-  static void printAllType(float f);
-  static void printAllType(double d);
-  static void printAllType(int i);
-  static void printAllType(char c);
+  template <typename T>
+  static void printAllType(T value) {
+    putToChar(static_cast<int>(value));
+    std::cout << "Int   : " << static_cast<int>(value) << std::endl;
+    std::cout << "Float : " << std::fixed << std::setprecision(5)
+              << static_cast<float>(value) << "f" << std::endl;
+    std::cout << "Double: " << std::fixed << std::setprecision(5)
+              << static_cast<double>(value) << std::endl;
+  }
+
   static void printAllType(std::string str);
   static void hugeNumPrint(double d);
 

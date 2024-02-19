@@ -19,42 +19,6 @@ void ScalarConverter::putToChar(int i) {
   }
 }
 
-void ScalarConverter::printAllType(float f) {
-  putToChar(static_cast<int>(f));
-  std::cout << "Int   : " << static_cast<int>(f) << std::endl;
-  std::cout << "Float : " << std::fixed << std::setprecision(1) << f << "f"
-            << std::endl;
-  std::cout << "Double: " << std::fixed << std::setprecision(1)
-            << static_cast<double>(f) << std::endl;
-}
-
-void ScalarConverter::printAllType(double d) {
-  putToChar(static_cast<int>(d));
-  std::cout << "Int   : " << static_cast<int>(d) << std::endl;
-  std::cout << "Float : " << std::fixed << std::setprecision(1)
-            << static_cast<float>(d) << "f" << std::endl;
-  std::cout << "Double: " << std::fixed << std::setprecision(1) << d
-            << std::endl;
-}
-
-void ScalarConverter::printAllType(int i) {
-  putToChar(static_cast<int>(i));
-  std::cout << "Int   : " << i << std::endl;
-  std::cout << "Float : " << std::fixed << std::setprecision(1)
-            << static_cast<float>(i) << "f" << std::endl;
-  std::cout << "Double: " << std::fixed << std::setprecision(1)
-            << static_cast<double>(i) << std::endl;
-}
-
-void ScalarConverter::printAllType(char c) {
-  std::cout << "Char  : '" << c << "'" << std::endl;
-  std::cout << "Int   : " << static_cast<int>(c) << std::endl;
-  std::cout << "Float : " << std::fixed << std::setprecision(1)
-            << static_cast<float>(c) << "f" << std::endl;
-  std::cout << "Double: " << std::fixed << std::setprecision(1)
-            << static_cast<double>(c) << std::endl;
-}
-
 void ScalarConverter::printAllType(std::string str) {
   std::cout << "Char  : impossible" << std::endl;
   std::cout << "Int   : impossible" << std::endl;
@@ -81,7 +45,6 @@ void ScalarConverter::hugeNumPrint(double d) {
 }
 
 void ScalarConverter::convert(std::string string) {
-  std::cout << "\nstring: " << string << std::endl;
   if (string.empty()) {
     printError();
     return;
@@ -124,15 +87,20 @@ void ScalarConverter::convert(std::string string) {
       return;
     }
   }
-  // dotがあった場合
-  if (isdot == true) {
-    printAllType(std::stod(string));
-    return;
-  }
   try {
-    printAllType(std::stoi(string));
+    if (isdot == false) {
+      printAllType(std::stoi(string));
+    } else {
+      printAllType(std::stod(string));
+    }
   } catch (const std::exception& e) {
-    hugeNumPrint(std::stod(string));
+    try {
+      hugeNumPrint(std::stod(string));
+      return;
+    } catch (const std::exception& e) {
+      printError();
+      return;
+    }
   }
   return;
 }
