@@ -56,10 +56,12 @@ void ScalarConverter::convert(std::string string) {
   }
   // nan -nan inf -inf
   else if (string == "nan" || string == "-nan" || string == "+nan" ||
-           string == "nanf" || string == "-nanf" || string == "+nanf" ||
-           string == "inf" || string == "-inf" || string == "+inf" ||
-           string == "inff" || string == "-inff" || string == "+inff") {
+           string == "inf" || string == "-inf" || string == "+inf") {
     printAllType(string);
+    return;
+  } else if (string == "nanf" || string == "-nanf" || string == "+nanf" ||
+             string == "inff" || string == "-inff" || string == "+inff") {
+    printAllType(string.substr(0, string.length() - 1));
     return;
   }
   // string error or number + string
@@ -79,7 +81,11 @@ void ScalarConverter::convert(std::string string) {
         continue;
       }
       if ((string[i] == 'f' || string[i] == 'F') && i == string.length() - 1) {
-        printAllType(std::stof(string));
+        try {
+          printAllType(std::stof(string));
+        } catch (const std::exception& e) {
+          printError();
+        }
         return;
       }
       // 数字以外で正しくない文字
@@ -92,12 +98,14 @@ void ScalarConverter::convert(std::string string) {
       printAllType(std::stoi(string));
     else
       printAllType(std::stod(string));
-    return;
   } catch (const std::exception& e) {
     try {
       hugeNumPrint(std::stod(string));
     } catch (const std::exception& e) {
-      printError();
+      if (string[0] == '-')
+        printAllType(static_cast<std::string>("-inf"));
+      else
+        printAllType(static_cast<std::string>("inf"));
     }
     return;
   }
